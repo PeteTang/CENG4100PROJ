@@ -90,9 +90,27 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_home) {
+            MainFragment fragment = new MainFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+//            SearchFragment fragment = new SearchFragment();
+//            if(getSupportFragmentManager().getBackStackEntryCount() > 1){
+//                getSupportFragmentManager().popBackStack();
+//                getSupportFragmentManager().popBackStack();
+//            }
+//            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, fragment, getString(R.string.news_fragment));
+//            fragmentTransaction.addToBackStack(getString(R.string.news_fragment));
+//            fragmentTransaction.commit();
+        } else if (id == R.id.nav_search) {
+            SearchFragment fragment = new SearchFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
 //            galleryFragment fragment = new galleryFragment();
 //            if(getSupportFragmentManager().getBackStackEntryCount() > 1){
 //                getSupportFragmentManager().popBackStack();
