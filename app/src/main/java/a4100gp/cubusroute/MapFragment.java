@@ -16,6 +16,7 @@ public class MapFragment extends FragmentActivity implements OnMapReadyCallback 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -24,6 +25,7 @@ public class MapFragment extends FragmentActivity implements OnMapReadyCallback 
     }
 
     public void onMapReady(GoogleMap googleMap) {
+
         LatLng MTR = new LatLng(22.4148789, 114.2104344);
         googleMap.addMarker(new MarkerOptions().position(MTR)
                 .title("MTR Station"));
