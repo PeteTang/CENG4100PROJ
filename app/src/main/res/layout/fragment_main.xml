@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     tools:context="a4100gp.cubusroute.MainActivity">
 
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MAIN"
+        android:text="Welcome"
         android:padding="8dp"
         android:textColor="#ffffff"
         android:background="@color/colorPrimary"
