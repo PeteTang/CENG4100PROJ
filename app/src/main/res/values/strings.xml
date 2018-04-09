@@ -8,4 +8,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello  fragment</string>
+    <string name="google_maps_key">AIzaSyBpHJgu8ZfykIoi65gipm_G6WpCgoKX83E</string>
+
 </resources>
