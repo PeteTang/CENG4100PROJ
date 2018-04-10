@@ -11,9 +11,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapFragment extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
-    float bearing;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
