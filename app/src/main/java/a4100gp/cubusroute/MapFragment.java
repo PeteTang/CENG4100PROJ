@@ -41,10 +41,11 @@ public class MapFragment extends FragmentActivity implements OnMapReadyCallback 
     private GoogleMap mMap;
     private static final int DEFAULT_ZOOM = 15;
     private LatLng destination;
-    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final String TAG = MapFragment.class.getSimpleName();
     private Location mLastKnownLocation;
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
     private int PADDING = 150;
     private final LatLng mDefaultLocation = new LatLng(22.4148789, 114.2104344);
@@ -71,31 +72,18 @@ public class MapFragment extends FragmentActivity implements OnMapReadyCallback 
 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        //destination = new LatLng(22.4148789, 114.2104344);
+        destination = new LatLng(22.4148789, 114.2104344);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(22.4148789, 114.2104344), 15));
-        LatLng MTR = new LatLng(22.4148789, 114.2104344);
+        LatLng MTR =        new LatLng(22.4148789, 114.2104344);
+        mMap.addMarker(new MarkerOptions().position(MTR).title("1A/1B/. MTR"));
+        LatLng Piazza = new LatLng(22.413785, 114.209185);
+        mMap.addMarker(new MarkerOptions().position(Piazza).title("2. MTR Piazza"));
+        LatLng YIA = new LatLng(22.415912, 114.210814);
+        mMap.addMarker(new MarkerOptions().position(YIA).title("3/4. YIA"));
 
-        mMap.addMarker(new MarkerOptions().position(MTR)
-                .title("MTR Station"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(MTR));
-
-        LatLng SHHO = new LatLng(22.417850, 114.210382);
-        mMap.addMarker(new MarkerOptions().position(SHHO)
-                .title("SHHO"));
-
-        LatLng SRR = new LatLng(22.419865, 114.207020);
-        mMap.addMarker(new MarkerOptions().position(SRR)
-                .title("SRR"));
-
-        LatLng AdminBuilding = new LatLng(22.418818, 114.205284);
-        mMap.addMarker(new MarkerOptions().position(AdminBuilding)
-                .title("AdminBuilding"));
-
-        LatLng SHHO_back = new LatLng(22.418033, 114.209908);
-        mMap.addMarker(new MarkerOptions().position(SHHO_back)
-                .title("SHHO_back"));
-
-
+        updateLocationUI();
+        getDeviceLocation();
+        updateLocationUI();
     }
 
     //-----------------------------------below is the code i have written before----------------------------------//
@@ -190,40 +178,40 @@ public class MapFragment extends FragmentActivity implements OnMapReadyCallback 
                                 double latitude = mLastKnownLocation.getLatitude();
                                 double longitude = mLastKnownLocation.getLongitude();
 
-                                try {
-
-                                    LatLng current = new LatLng(latitude, longitude);
-                                    com.google.maps.model.LatLng lastKnownLocation2 = new com.google.maps.model.LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
-                                    com.google.maps.model.LatLng destination2 = new com.google.maps.model.LatLng(destination.latitude, destination.longitude);
-                                    DirectionsResult result = DirectionsApi.newRequest(getGeoContext()).mode(TravelMode.DRIVING).origin(lastKnownLocation2).destination(destination2).await();
-                                    if (result.routes.length == 0) {
-                                        Toast.makeText(MapFragment.this, "No route is found",
-                                                Toast.LENGTH_LONG).show();
-                                    } else {
-                                        List<LatLng> decodedPath = PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath());
-                                        if (decodedPath != null) {
-                                            mMap.addPolyline(new PolylineOptions().addAll(decodedPath));
-                                            mMap.addMarker(new MarkerOptions().position(current).title("Marker"));
-                                            LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                                            builder.include(destination);
-                                            builder.include(current);
-                                            int i;
-                                            for (i = 0; i < decodedPath.size(); i++) {
-                                                builder.include(decodedPath.get(i));
-                                            }
-                                            LatLngBounds bounds = builder.build();
-                                            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, PADDING));
-                                        }
-
-                                    }
-
-                                } catch (java.lang.InterruptedException e) {
-                                    e.printStackTrace();
-                                } catch (java.io.IOException e) {
-                                    e.printStackTrace();
-                                } catch (com.google.maps.errors.ApiException e) {
-                                    e.printStackTrace();
-                                }
+//                                try {
+//
+//                                    LatLng current = new LatLng(latitude, longitude);
+//                                    com.google.maps.model.LatLng lastKnownLocation2 = new com.google.maps.model.LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
+//                                    com.google.maps.model.LatLng destination2 = new com.google.maps.model.LatLng(destination.latitude, destination.longitude);
+//                                    DirectionsResult result = DirectionsApi.newRequest(getGeoContext()).mode(TravelMode.DRIVING).origin(lastKnownLocation2).destination(destination2).await();
+//                                    if (result.routes.length == 0) {
+//                                        Toast.makeText(MapFragment.this, "No route is found",
+//                                                Toast.LENGTH_LONG).show();
+//                                    } else {
+//                                        List<LatLng> decodedPath = PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath());
+//                                        if (decodedPath != null) {
+//                                            mMap.addPolyline(new PolylineOptions().addAll(decodedPath));
+//                                            mMap.addMarker(new MarkerOptions().position(current).title("Marker"));
+//                                            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+//                                            builder.include(destination);
+//                                            builder.include(current);
+//                                            int i;
+//                                            for (i = 0; i < decodedPath.size(); i++) {
+//                                                builder.include(decodedPath.get(i));
+//                                            }
+//                                            LatLngBounds bounds = builder.build();
+//                                            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, PADDING));
+//                                        }
+//
+//                                    }
+//
+//                                } catch (java.lang.InterruptedException e) {
+//                                    e.printStackTrace();
+//                                } catch (java.io.IOException e) {
+//                                    e.printStackTrace();
+//                                } catch (com.google.maps.errors.ApiException e) {
+//                                    e.printStackTrace();
+//                                }
                             }
 
                         } else {

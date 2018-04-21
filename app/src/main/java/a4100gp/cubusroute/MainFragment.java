@@ -2,6 +2,7 @@ package a4100gp.cubusroute;
 
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,6 +22,15 @@ public class MainFragment extends ListFragment implements SearchView.OnQueryText
     List<String> mAllValues;
     private ArrayAdapter<String> mAdapter;
     private Context mContext;
+    String[] itemname ={
+            "1A",
+            "1B",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,9 +44,30 @@ public class MainFragment extends ListFragment implements SearchView.OnQueryText
     @Override
     public void onListItemClick(ListView listView, View v, int position, long id) {
         String item = (String) listView.getAdapter().getItem(position);
-        if (getActivity() instanceof OnItem1SelectedListener) {
-            ((OnItem1SelectedListener) getActivity()).OnItem1SelectedListener(item);
+        if (position == 0){
+            Intent i = new Intent(mContext, a4100gp.cubusroute.MapActivity1A.class);
+            i.putExtra("viewpager_position", position);
+            startActivity(i);
+        }else if (position == 1){
+            Intent i = new Intent(mContext, a4100gp.cubusroute.MapActivity1B.class);
+            i.putExtra("viewpager_position", position);
+            startActivity(i);
+        }else if (position == 2){
+            Intent i = new Intent(mContext, a4100gp.cubusroute.MapActivity2.class);
+            i.putExtra("viewpager_position", position);
+            startActivity(i);
+        }else if (position == 3){
+            Intent i = new Intent(mContext, a4100gp.cubusroute.MapActivity3.class);
+            i.putExtra("viewpager_position", position);
+            startActivity(i);
+        }else if (position == 4){
+            Intent i = new Intent(mContext, a4100gp.cubusroute.MapActivity4.class);
+            i.putExtra("viewpager_position", position);
+            startActivity(i);
         }
+//        if (getActivity() instanceof OnItem1SelectedListener) {
+//            ((OnItem1SelectedListener) getActivity()).OnItem1SelectedListener(item);
+//        }
         getFragmentManager().popBackStack();
     }
 
@@ -85,7 +116,7 @@ public class MainFragment extends ListFragment implements SearchView.OnQueryText
                 filteredValues.remove(value);
             }
         }
-
+        //mAdapter = new CustomListAdapter(this, itemname);
         mAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, filteredValues);
         setListAdapter(mAdapter);
 
@@ -114,17 +145,12 @@ public class MainFragment extends ListFragment implements SearchView.OnQueryText
     private void populateList(){
 
         mAllValues = new ArrayList<>();
-
         mAllValues.add("1A");
         mAllValues.add("1B");
         mAllValues.add("2");
         mAllValues.add("3");
         mAllValues.add("4");
-        mAllValues.add("5");
-        mAllValues.add("6");
-        mAllValues.add("7");
-        mAllValues.add("8");
-
+        //mAdapter = new CustomListAdapter(mContext, itemname);
         mAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, mAllValues);
         setListAdapter(mAdapter);
     }

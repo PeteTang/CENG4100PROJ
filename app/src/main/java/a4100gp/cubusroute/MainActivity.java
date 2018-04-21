@@ -16,7 +16,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.*;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FragmentManager fragmentManager;
     NavigationView navigationView = null;
     Toolbar toolbar = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,8 +137,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new MainFragment();
                 viewIsAtHome = true;
                 break;
-            case R.id.nav_map:
-                break;
+
             case R.id.fab:
                 if (viewIsAtHome == true) {
                     fragment = new LocationSearchFragment();
@@ -148,7 +150,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     break;
                 }
                 break;
-
         }
 
         if (fragment != null) {

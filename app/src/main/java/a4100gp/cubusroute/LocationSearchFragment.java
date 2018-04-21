@@ -123,15 +123,24 @@ public class LocationSearchFragment extends ListFragment implements SearchView.O
     private void populateList(){
 
         mAllValues = new ArrayList<>();
-        mAllValues.add("MTR");
-        mAllValues.add("YIA");
-        mAllValues.add("University Sports Centre");
-        mAllValues.add("Sir Run Run Hall");
+        mAllValues.add("Chan Chun Ha Hostel");
+        mAllValues.add("CWC");
+        mAllValues.add("Fung King-hey Building");
+        mAllValues.add("Jockey Club Postgraduation Hall");
         mAllValues.add("LSK building");
-        mAllValues.add("UC");
-        mAllValues.add("NA");
-        mAllValues.add("Shaw");
-        mAllValues.add("abc");
+        mAllValues.add("New Asia College");
+        mAllValues.add("Scince Centre");
+        mAllValues.add("Shaw College");
+        mAllValues.add("S.H.Ho College");
+        mAllValues.add("Sir Run Run Hall");
+        mAllValues.add("Residence 3 & 4");
+        mAllValues.add("Residence 15");
+        mAllValues.add("United College");
+        mAllValues.add("United College Staff Residence");
+        mAllValues.add("Univ. Admin Building");
+        mAllValues.add("Univ. Sports Centre");
+        mAllValues.add("Univ. MTR Station");
+        mAllValues.add("YIA");
 
         mAdapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, mAllValues);
         setListAdapter(mAdapter);
